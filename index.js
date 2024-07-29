@@ -11,15 +11,10 @@ const allowedOrigins = ["https://small-creativity.netlify.app"];
 
 app.use(bodyParser.json());
 
+// CORS configuration
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "https://small-creativity.netlify.app", // Ensure this matches exactly
   })
 );
 
