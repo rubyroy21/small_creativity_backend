@@ -7,11 +7,19 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 const mongoURI = process.env.MONGO_URI;
+const allowedOrigins = ["https://small-creativity.netlify.app"];
 
 app.use(bodyParser.json());
+
 app.use(
   cors({
-    origin: "https://small-creativity.netlify.app/",
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
 
