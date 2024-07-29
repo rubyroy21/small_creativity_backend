@@ -9,7 +9,11 @@ const port = process.env.PORT || 5000;
 const mongoURI = process.env.MONGO_URI;
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://small-creativity.netlify.app/",
+  })
+);
 
 if (!mongoURI) {
   console.error("MONGO_URI is not defined in .env file");
