@@ -17,6 +17,8 @@ app.use(
   })
 );
 
+app.options("*", cors());
+
 if (!mongoURI) {
   console.error("MONGO_URI is not defined in .env file");
   process.exit(1);
